@@ -1,5 +1,7 @@
 package com.company;
 
+import com.company.ch2.array.Array;
+
 public class Main {
 
     public static void main(String[] args) {
@@ -23,6 +25,10 @@ public class Main {
             System.out.println(scores[i]);
         }
 
+
+
+        Array array = new Array(20);
+        System.out.println(array.getLength());
 
 
     }
