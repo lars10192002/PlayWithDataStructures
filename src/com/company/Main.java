@@ -28,12 +28,14 @@ public class Main {
 
 
         Array array = new Array(20);
-        array.addFirst(5);
-        array.addFirst(2);
-//        array.addFirst(1);
-
-        System.out.println(array.getLength());
-        System.out.println(array.getCapacity());
+        for (int i = 0; i < 10; i++) {
+            array.addLast(i);
+        }
+        array.addFirst(-1);
+        array.remove(2);
+        array.removeElement(4);
+        array.removeFirst();
+        System.out.println(array);
 
 
 
