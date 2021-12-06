@@ -16,19 +16,25 @@ public class Main {
         }
 
         for (int score:scores) {
-            System.out.println(score);
+//            System.out.println(score);
         }
 
         scores[0]=777;
 
         for (int i = 0; i < scores.length; i++) {
-            System.out.println(scores[i]);
+//            System.out.println(scores[i]);
         }
 
 
 
         Array array = new Array(20);
+        array.addFirst(5);
+        array.addFirst(2);
+//        array.addFirst(1);
+
         System.out.println(array.getLength());
+        System.out.println(array.getCapacity());
+
 
 
     }

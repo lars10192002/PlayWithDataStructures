@@ -29,4 +29,39 @@ public class Array {
     public boolean isEmpty(){
         return length == 0 ;
     }
+
+    public void addLast( int element){
+        add(length, element);
+    }
+
+    public void addFirst(int element){
+        add(0,element);
+    }
+
+    public void add(int index, int element){
+        // 1. 檢查陣列長度是否塞滿
+        // 2. 檢查陣列內是否為0 || 索引是否小於目前陣列的長度
+        // 3. 實作彈性且隨機插入元素的彈性陣列
+
+        if(length == data.length)
+            throw new IllegalArgumentException("Add failed. Array is full.");
+
+        if(index < 0 || index > length)
+            throw new IllegalArgumentException("Add failed. Require index >= 0 and index <= size.");
+
+        // 指定陣列位置插入元素，當指定位置不為空時，將陣列元素重新移位排列
+        // length = 目前陣列長度
+        for(int i = length -1; i >= index ; i --){
+            System.out.println("index = "+index+" length = "+length);
+            data[i+1] = data[i];
+        }
+
+        // 當插入陣列位置為空時，直接塞入
+        data[index] = element;
+
+        length++;
+
+    }
+
+
 }
