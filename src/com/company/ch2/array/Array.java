@@ -1,12 +1,12 @@
 package com.company.ch2.array;
 
-public class Array {
-    private int[] data; // data預設值null
+public class Array<E> {
+    private E[] data; // data預設值null
     private int length; // length預設值null
 
     //在物件建立的初始流程定義Array類別，使用建構式設定預設值，data = 設為動態容量，會將陣列的capacity傳入建構陣列
     public Array(int capacity) {
-        this.data = new int[capacity];
+        data = (E[])new Object[capacity];
         this.length = 0;
     }
 
@@ -30,15 +30,15 @@ public class Array {
         return length == 0 ;
     }
 
-    public void addLast( int element){
+    public void addLast( E element){
         add(length, element);
     }
 
-    public void addFirst(int element){
+    public void addFirst(E element){
         add(0,element);
     }
 
-    public void add(int index, int element){
+    public void add(int index, E element){
         // 1. 檢查陣列長度是否塞滿
         // 2. 檢查陣列內是否為0 || 索引是否小於目前陣列的長度
         // 3. 實作彈性且隨機插入元素的彈性陣列
@@ -65,7 +65,7 @@ public class Array {
 
 
     //獲取index 索引位置的元素
-    public int get(int index){
+    public E get(int index){
         //檢查索引異常
         if(index <0 || index >= length)
             throw new IllegalArgumentException("Get faild. Index is illegal.");
@@ -74,7 +74,7 @@ public class Array {
 
 
     //修改index 索引位置的元素為e
-    public void set(int index, int element){
+    public void set(int index, E element){
         //檢查索引異常
         if (index < 0 || index >= length)
             throw new IllegalArgumentException("Set filed. Index is illegal.");
@@ -83,9 +83,9 @@ public class Array {
 
 
     // 查找陣列中是否有元素e
-    public boolean contain(int e){
+    public boolean contain(E e){
         for(int i=0 ; i<length; i ++){
-            if(data[i] == e)
+            if(data[i].equals(e))
                 return true;
         }
         return false;
@@ -93,9 +93,9 @@ public class Array {
 
 
     // 查找陣列中元素e所在的索引，如果不存在元素e,則返回-1
-    public int find(int e){
+    public int find(E e){
         for (int i = 0; i < length; i++) {
-            if (data[i] == e)
+            if(data[i].equals(e))
                 return i;
         }
         return -1;
@@ -103,30 +103,31 @@ public class Array {
 
 
     // 從數組中刪除index位置的元素，返回刪除的元素
-    public int remove(int index){
+    public E remove(int index){
         if (index < 0 || index >= length)
             throw new IllegalArgumentException("Remove failed. Index is illegal.");
 
-        int ret = data[index];
+        E ret = data[index];
         for (int i = index + 1; i <length ; i++)
             data[i-1] = data[i];
         length --;
+        data[length] = null; //loitering objects != memory leak
         return ret;
     }
 
     // 從陣列中刪除第一個元素，返回刪除的元素
-    public int removeFirst(){
+    public E removeFirst(){
         return remove(0);
     }
 
     // 從陣列中刪除最後一個元素，返回刪除的元素
-    public int removeLast(){
+    public E removeLast(){
         return remove(length-1);
     }
 
 
     // 從陣列中刪除元素e
-    public void removeElement(int e){
+    public void removeElement(E e){
         int index = find(e);
         if(index != -1)
             remove(index);
