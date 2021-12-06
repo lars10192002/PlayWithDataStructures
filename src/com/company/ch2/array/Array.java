@@ -64,4 +64,38 @@ public class Array {
     }
 
 
+    //獲取index 索引位置的元素
+    public int get(int index){
+        //檢查索引異常
+        if(index <0 || index >= length)
+            throw new IllegalArgumentException("Get faild. Index is illegal.");
+        return  data[index];
+    }
+
+
+    //修改index 索引位置的元素為e
+    public void set(int index, int element){
+        //檢查索引異常
+        if (index < 0 || index >= length)
+            throw new IllegalArgumentException("Set filed. Index is illegal.");
+        data[index] = element;
+    }
+
+    @Override
+    public String toString(){
+
+        StringBuilder res = new StringBuilder();
+        res.append(String.format("Array: size = %d , capacity = %d\n", length, data.length));
+        res.append("[");
+
+        for (int i=0;i<length;i++){
+            res.append(data[i]);
+            if(i != length-1)
+                res.append(", ");
+        }
+        res.append("]");
+        return res.toString();
+
+    }
+
 }
