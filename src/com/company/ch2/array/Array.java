@@ -40,14 +40,15 @@ public class Array<E> {
 
     public void add(int index, E element){
         // 1. 檢查陣列長度是否塞滿
-        // 2. 檢查陣列內是否為0 || 索引是否小於目前陣列的長度
+        // 2. 檢查陣列內是否為0 || 索引是否小於目前陣列的長度 => 改成當陣列滿時，使用resize改變陣列大小(2X)
         // 3. 實作彈性且隨機插入元素的彈性陣列
 
         if(length == data.length)
-            throw new IllegalArgumentException("Add failed. Array is full.");
+            resize(2 * data.length);
 
         if(index < 0 || index > length)
-            throw new IllegalArgumentException("Add failed. Require index >= 0 and index <= size.");
+            throw new IllegalArgumentException("Add failed. Array is full.");
+
 
         // 指定陣列位置插入元素，當指定位置不為空時，將陣列元素重新移位排列
         // length = 目前陣列長度
@@ -112,6 +113,11 @@ public class Array<E> {
             data[i-1] = data[i];
         length --;
         data[length] = null; //loitering objects != memory leak
+
+        //檢查現在使用的陣列大小，如果未使用的陣列太多，將其縮小成一半
+        if(length == data.length/2)
+            resize(data.length/2);
+
         return ret;
     }
 
@@ -150,6 +156,17 @@ public class Array<E> {
         }
         res.append("]");
         return res.toString();
+
+    }
+
+
+    private void resize(int newCapacity){
+        E[] newData =(E[]) new Object[newCapacity];
+        for (int i = 0; i < length; i++)
+            newData[i] = data[i];
+
+        // 將data 指向新陣列的位置
+        data = newData;
 
     }
 

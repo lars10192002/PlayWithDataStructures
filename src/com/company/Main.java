@@ -6,36 +6,30 @@ public class Main {
 
     public static void main(String[] args) {
 	// write your code here
-        int[] arr = new int[10];
-        for (int i=0; i<arr.length ;i++)
-            arr[i] = i;
-
-        int[] scores = new int[]{100,22,333,66};
-        for (int i = 0; i < scores.length; i++) {
-//            System.out.println(scores[i]);
-        }
-
-        for (int score:scores) {
-//            System.out.println(score);
-        }
-
-        scores[0]=777;
-
-        for (int i = 0; i < scores.length; i++) {
-//            System.out.println(scores[i]);
-        }
 
 
 
-        Array<Integer> array = new Array(20);
+
+        Array<Integer> arr = new Array();
         for (int i = 0; i < 10; i++) {
-            array.addLast(i);
+            arr.addLast(i);
         }
-        array.addFirst(-1);
-        array.remove(2);
-        array.removeElement(4);
-        array.removeFirst();
-        System.out.println(array);
+        System.out.println(arr);
+
+        arr.add(1, 100);
+        System.out.println(arr);
+
+        arr.addFirst(-1);
+        System.out.println(arr);
+
+        arr.remove(2);
+        System.out.println(arr);
+
+        arr.removeElement(4);
+        System.out.println(arr);
+
+        arr.removeFirst();
+        System.out.println(arr);
 
 
 
