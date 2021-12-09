@@ -73,6 +73,14 @@ public class Array<E> {
         return  data[index];
     }
 
+    public E getFirst(){
+        return get(0);
+    }
+
+    public E getLast(){
+        return get(length-1);
+    }
+
 
     //修改index 索引位置的元素為e
     public void set(int index, E element){
