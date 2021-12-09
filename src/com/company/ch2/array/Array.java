@@ -114,8 +114,8 @@ public class Array<E> {
         length --;
         data[length] = null; //loitering objects != memory leak
 
-        //檢查現在使用的陣列大小，如果未使用的陣列太多，將其縮小成一半
-        if(length == data.length/2)
+        //檢查現在使用的陣列大小，如果未使用的陣列太多，lazy 一點 查到1/4的時候在做縮減容量。
+        if(length == data.length/4 && data.length /2 != 0)
             resize(data.length/2);
 
         return ret;
