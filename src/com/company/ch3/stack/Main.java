@@ -1,4 +1,4 @@
-package com.company;
+package com.company.ch3.stack;
 
 import com.company.ch2.array.Array;
 import com.company.ch3.stack.ArrayStack;
