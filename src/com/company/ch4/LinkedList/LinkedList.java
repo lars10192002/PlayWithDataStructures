@@ -133,6 +133,56 @@ public class LinkedList <E> {
         return false;
     }
 
+
+    //  從鏈表中刪除index(0-based)位置的元素， 返回刪除的元素
+    // 在鏈表中不是一個常用的操作，練習用
+
+    public E remove(int index){
+        if(index < 0 || index >= size)
+            throw new IllegalArgumentException("Remove failed. Index is illegal.");
+
+        Node prev = dummyHead;
+        for (int i = 0; i < index; i++) {
+            prev = prev.next;
+        }
+
+        Node retNode = prev.next;
+        prev.next = retNode.next;
+        retNode.next = null;
+        size--;
+
+        return retNode.e;
+    }
+
+
+    // 刪掉鏈表最後一個
+    public E removeLast(){
+        return remove(size-1);
+    }
+
+    // 刪掉鏈表第一個
+    public E removeFirst(){
+        return remove(0);
+    }
+
+    //從鏈表中刪掉元素e
+    public void removeElement(E e){
+
+        Node prev = dummyHead;
+        while (prev.next != null){
+            if (prev.next.e.equals(e))
+                break;
+            prev = prev.next;
+        }
+
+        if (prev.next != null){
+            Node delNode = prev.next;
+            prev.next = delNode.next;
+            delNode.next = null;
+            size--;
+        }
+    }
+
     @Override
     public String toString(){
         StringBuilder res = new StringBuilder();
