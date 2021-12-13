@@ -2,6 +2,8 @@ package com.company.ch4.LinkedList;
 
 public class Main {
 
+
+
     public static void main(String[] arg){
 
         LinkedList<Integer> linkedList = new LinkedList<>();
