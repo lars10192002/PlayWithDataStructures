@@ -40,26 +40,20 @@ public class BST <E extends Comparable<E>>{
     }
 
     // 向以node為根的二分搜索樹中插入元素e，遞歸算法
-    private void add(Node node, E e) {
+    // 返回插入新節點後結束二分搜索樹的根
+    private Node add(Node node, E e) {
 
-        //遞歸的終止條件
-        if (e.equals(node.e))//插入的元素是否重複(root) 是直接回傳
-            return ;
-        else if (e.compareTo(node.e) > 0 && node.left == null){ // 當插入值(e)大於現有數值(node.e)會回傳正值差距越大越正
-            node.left = new Node(e);
+        if(node == null){
             size++;
-            return;
-        }else if (e.compareTo(node.e) < 0 && node.right == null){ // 當插入值(e)大於現有數值(node.e)會回傳負值差距越大越負
-
-            node.right = new Node(e);
-            size++;
-            return;
+            return new Node(e);
         }
 
-        if (e.compareTo(node.e) < 0)
-            add(node.left, e);
-        else
-            add(node.right, e);
+        if(e.compareTo(node.e) < 0)
+            node.left = add(node.left, e);
+        else if (e.compareTo(node.e) > 0)
+            node.right = add(node.right, e);
+
+        return node;
 
     }
 
