@@ -76,5 +76,53 @@ public class BST <E extends Comparable<E>>{
             return contains(node.right,e);
     }
 
+    // 二分搜索樹的前序遍歷
+    public void preOrder(){
+        preOrder(root);
+    }
+
+
+    //前序遍歷以node為根的二分搜索樹， 遞歸算法
+    private void preOrder(Node node){
+
+        if (node == null)
+            return;
+
+        System.out.println(node.e);
+        preOrder(node.left);
+        preOrder(node.right);
+
+    }
+
+
+    @Override
+    public String toString(){
+        StringBuilder res = new StringBuilder();
+        generateBSTString(root, 0 , res);
+        return res.toString();
+    }
+
+
+    //生成以node為根節點，深度為depth的描述二叉樹的字符串
+    private void generateBSTString(Node node, int depth, StringBuilder res) {
+
+        if (node == null){
+            res.append(generateDepthString(depth)+"null\n");
+            return;
+        }
+
+        res.append(generateDepthString(depth) + node.e + "\n");
+        generateBSTString(node.left, depth +1 ,res);
+        generateBSTString(node.right, depth+1, res);
+    }
+
+    private String generateDepthString(int depth) {
+
+        StringBuilder res = new StringBuilder();
+        for (int i = 0; i < depth; i++)
+            res.append("--");
+        return res.toString();
+    }
+
 
 }
