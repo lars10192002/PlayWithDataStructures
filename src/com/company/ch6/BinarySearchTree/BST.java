@@ -1,5 +1,7 @@
 package com.company.ch6.BinarySearchTree;
 
+import java.util.Stack;
+
 public class BST <E extends Comparable<E>>{
 //Comparable<E> ← Java中的可比較性的接口
     private class Node{
@@ -126,6 +128,28 @@ public class BST <E extends Comparable<E>>{
         postOrder(node.left);
         postOrder(node.right);
         System.out.println(node.e);
+    }
+
+
+    // 二分搜索樹非遞歸前序遍歷
+
+    public void preOrderNR(){
+
+        if (root == null)
+            return;
+
+
+        Stack<Node> stack = new Stack<>();
+        stack.push(root);
+        while(!stack.isEmpty()){
+            Node cur = stack.pop();
+            System.out.println(cur.e);
+
+            if(cur.right != null)
+                stack.push(cur.right);
+            if(cur.left != null)
+                stack.push(cur.left);
+        }
     }
 
     @Override
