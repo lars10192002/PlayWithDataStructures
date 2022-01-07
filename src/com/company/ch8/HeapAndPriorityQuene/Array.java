@@ -10,6 +10,13 @@ public class Array<E> {
         this.length = 0;
     }
 
+    public Array(E[] arr){
+        data = (E[])new Object[arr.length];
+        for(int i = 0 ; i < arr.length ; i ++)
+            data[i] = arr[i];
+        length = arr.length;
+    }
+
     //沒有參數的建構式，容量預設值為10
     public Array(){
         this(10);
